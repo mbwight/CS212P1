@@ -13,19 +13,22 @@ public class DirectoryParser{
 	
 	public File parser(Path path){
 		File file = new File(path.normalize().toString());
-		if(file.listFiles() == null){
-			return null;
+		if(file.toString().toLowerCase().endsWith(".htm") || file.toString().toLowerCase().endsWith(".html")){
+			files.add(file);
 		}
 		
-		for(File f: file.listFiles()){
-			if(f.isDirectory()){
-				parser(f.toPath());
-			}
-			else{
-				if(f.toString().toLowerCase().endsWith(".htm") || f.toString().toLowerCase().endsWith(".html")){
+		
+		System.out.println(file.toString() + " REEEEEEEEEEEEE");
+		if(file.isDirectory()) {
+			for(File f: file.listFiles()){
+				if(f.isDirectory()){
+					parser(f.toPath());
+				}
+				else{
+					if(f.toString().toLowerCase().endsWith(".htm") || f.toString().toLowerCase().endsWith(".html")){
 					
-					files.add(f);
-					//System.out.println(f);
+						files.add(f);
+					}
 				}
 			}
 		}

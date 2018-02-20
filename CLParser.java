@@ -22,6 +22,11 @@ public class CLParser{
 			
 		}
 		
+		if(!hasPathFlag(args)) {
+			System.out.println("No path flag");
+			throw new Exception();
+		}
+		
 		for(int i = 0; i < args.length; i++){
 			if(this.isPathFlag(args[i])){
 				if(i+1 < args.length && !isIndexFlag(args[i+1])){
@@ -36,6 +41,9 @@ public class CLParser{
 				if(i+1 < args.length){
 					this.setIndex(args[i+1]);
 				}
+				else {
+					this.setIndex("index.json");
+				}
 			}
 		}
 	}
@@ -47,10 +55,27 @@ public class CLParser{
 		return false;
 	}
 	
+	public boolean hasPathFlag(String[] arg) {
+		for(int i = 0; i < arg.length; i++) {
+			if(isPathFlag(arg[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean isIndexFlag(String arg){
 		if(arg.contains("-index")){
-			this.index = Paths.get(arg);
 			return true;
+		}
+		return false;
+	}
+	
+	public boolean hasIndexFlag(String[] arg) {
+		for(int i = 0; i < arg.length; i++) {
+			if(isIndexFlag(arg[i])) {
+				return true;
+			}
 		}
 		return false;
 	}
