@@ -94,6 +94,7 @@ public class HTMLCleaner {
 		if(string != null){
 			string = string.toLowerCase();
 			string = string.replaceAll("\\d", " ");
+			string = string.replaceAll("\\W+", " ");
 			string = string.replaceAll("(?U)[^\\p{Alpha}\\p{Space}]+", " ");
 			string = string.replaceAll("\\s{2,}", " ");
 			string = string.trim();

@@ -22,6 +22,7 @@ public class Driver{
 			HTMLCleaner cleaner = new HTMLCleaner();
 			for(File file: stream.files){
 				FileParser fileParser = new FileParser(file);
+				
 				String output = fileParser.parse(file);
 				output = cleaner.stripHTML(output);
 				System.out.println(output.toString());
